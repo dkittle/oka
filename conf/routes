@@ -1,0 +1,31 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                   controllers.Application.index
+
+GET         /login                              controllers.Auth.login
+POST        /login                              controllers.Auth.authenticate
+GET         /logout                             controllers.Auth.logout
+
+POST        /users                              controllers.Users.createUser
+
+GET         /objectives/all-users               controllers.Objectives.listAll
+GET         /objectives/:username               controllers.Objectives.list(username: String)
+POST        /objectives                         controllers.Objectives.save
+GET         /newobjective                       controllers.Objectives.create
+
+GET         /invites/create                     controllers.Invites.create
+GET         /invites                            controllers.Invites.list
+POST        /invites                            controllers.Invites.save
+GET         /invites/:hash                      controllers.Invites.complete(hash: String)
+#GET		/invites/:id/edit			controllers.Invites.edit(id: Int)
+#POST	/invites/:id				controllers.Invites.update(id: Int)
+#POST	/invites/:id/delete			controllers.Invites.delete(id: Int)
+
+# Javascript routing
+#GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                       controllers.Assets.at(path="/public", file)

@@ -1,0 +1,6 @@
+
+application.name = ClearFit OKAs
+
+contact.request.subject="Test subject"
+contact.request.email.from="ClearFit Ops <ops@clearfit.com>"
+contact.request.body=""

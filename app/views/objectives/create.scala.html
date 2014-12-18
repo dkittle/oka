@@ -1,0 +1,21 @@
+@(users: Iterable[User], rootObjectives: List[Objective], objectiveForm: Form[models.ObjectiveForm])(implicit lang: Lang, flash: Flash, session: play.api.mvc.Session)
+
+@import helper._
+@import play.api.mvc.Security
+
+@main(Messages("Create new objective"), users) {
+
+    <h1>Create a new objective for @session.get(Security.username)</h1>
+    @form(routes.Objectives.save(), 'id -> "objectiveForm", 'class -> "objectiveForm") {
+        <select name="parentId">
+            <option value="0">-- Choose a parent objective, if appropriate --</option>
+            @for(objective <- rootObjectives){
+                <option value="@objective.id"> @objective.name </option>
+            }
+        </select>
+        <input type="hidden" name="username" value="@session.get(Security.username)">
+        @inputText(objectiveForm("name"))
+        @inputText(objectiveForm("description"))
+        <button type="submit">Create objective</button>
+    }
+}

@@ -1,0 +1,67 @@
+@(form: Form[(String, String)])(implicit flash: Flash)
+
+<html>
+    <head>
+        <title>OKAs</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    </head>
+    <body>
+
+        <header>
+            <a href="#" id="logo"><span>ClearFit</span> OKAs</a>
+        </header>
+
+        <section id="main" style="left: 0px; width: 450px; padding-left: 50px; padding-top: 15px;">
+
+            @helper.form(routes.Auth.authenticate()) {
+            <article  class="tasks">
+
+                    <div class="folder" data-folder-id="1">
+                        <header>
+                            <h2><a href="#">Sign In</a></h2>
+                        </header>
+                        <ul class="list">
+
+                            <li data-task-id="1">
+
+
+                                @form.globalError.map { error =>
+                                    <p class="error">
+                                        @error.message
+                                    </p>
+                                }
+
+                                @flash.get("success").map { message =>
+                                    <p class="success">
+                                        @message
+                                    </p>
+                                }
+
+                                <p>
+                                    <input type="username" name="username" placeholder="Username" id="username" value="@form("username").value">
+                                </p>
+                                <p>
+                                    <input type="password" name="password" id="password" placeholder="Password">
+                                </p>
+                                <p>
+                                    <button class="button" type="submit">Login</button>
+                                </p>
+
+
+                            </li>
+
+                        </ul>
+                    </div>
+                <p class="note">
+                    Try using your <em>ClearFit email</em> with <em>secret</em> as password.
+                </p>
+            </article>
+            }
+        </section>
+
+    </body>
+</html>
+
+
+

@@ -1,0 +1,19 @@
+# Users
+
+- &clearfit !!models.User
+    username:   clearfit
+    name:       Clearfit
+    password:   secret
+
+- &don !!models.User
+    username:   don
+    name:       Don Kittle
+    password:   DC724AF18FBDD4E59189F5FE768A5F8311527050
+
+# Objectives
+
+- !!models.Objective
+  userId:     *clearfit
+  parendId:   NULL
+  name:       Raise the bar for talant
+  description:  .
