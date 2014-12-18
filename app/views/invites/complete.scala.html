@@ -1,0 +1,33 @@
+@(users: Iterable[User], email: String, userForm: Form[models.invite.PasswordForInvite])(implicit lang: Lang, flash: Flash, session: play.api.mvc.Session)
+
+@import helper._
+
+@main(Messages("Create new account"), users) {
+
+
+
+    @form(routes.Users.createUser(), 'id -> "emailForm", 'class -> "emailForm") {
+        <article class="tasks" style="padding: 20px;">
+            <div class="folder">
+                <header><h3>Register a new User</h3></header>
+                @flash.get("error").map { msg =>
+                    <div class="flash">@msg</div>
+                }
+                @flash.get("success").map { msg =>
+                    <div class="flash">@msg</div>
+                }
+                <ul class="list">
+                    <li><h4>Please provide some details about the user (@email)</h4>
+                        <p><input type="hidden" name="email" value="@{email}"></p>
+                        <p><input type="text" name="name" placeholder="Name" id="name"></p>
+                        <p><input type="text" name="username" placeholder="Username" id="username"></p>
+                        <p><input type="password" name="password" placeholder="Password" id="password"></p>
+                        <p><input type="password" name="confirm" placeholder="Confirm Password" id="confirm"></p>
+                        <p><button type="submit" class="new">Create Account</button></p>
+                    </li>
+                </ul>
+        </div>
+        </article>
+    }
+
+}

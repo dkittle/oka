@@ -1,0 +1,28 @@
+@(users: Iterable[User], user: User, objectives: Iterable[Objective])(implicit lang: Lang, flash: Flash, session: play.api.mvc.Session)
+
+@import org.joda.time.format.DateTimeFormat
+
+@main(Messages("application.name"), users) {
+
+    <article class="tasks">
+        @if(objectives.isEmpty) {
+            <p>No objectives found for @{user.name}</p>
+        } else {
+            <div class="folder">
+            <header><h3>Objectives for @user.name</h3></header>
+            <ul class="list">
+            @for(objective <- objectives) {
+                <li data-task-id="@objective.id">
+                    <h4>@objective.name</h4>
+                    <time datetime="@objective.createdAt">@DateTimeFormat.forPattern("MMM dd yyyy").print(objective.createdAt)</time>
+                </li>
+            }
+            </ul>
+            </div>
+        }
+        @if(user.username == session.get(Security.username).get) {
+            <a href="@routes.Objectives.create" class="new">Create objective for @session.get(Security.username)</a>
+        }
+
+    </article>
+}

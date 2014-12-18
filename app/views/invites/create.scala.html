@@ -1,0 +1,37 @@
+@(users: Iterable[User], emailForm: Form[models.invite.EmailForInvite])(implicit lang: Lang, flash: Flash, session: play.api.mvc.Session)
+
+@import helper._
+
+@main(Messages("Create new invite"), users) {
+
+    @helper.form(routes.Invites.save()) {
+        <article class="tasks" style="padding: 20px;">
+
+            <div class="folder" data-folder-id="1">
+                <header>
+                    <h2><a href="#">Invite a new User via email</a></h2>
+                </header>
+                <ul class="list">
+
+                    <li data-task-id="1">
+                        @flash.get("error").map { error =>
+                            <p class="error">
+                                @error
+                            </p>
+                        }
+                        @flash.get("success").map { message =>
+                            <p class="success">
+                                @message
+                            </p>
+                        }
+
+                        <p><input type="text" name="email" placeholder="Email" id="email" value="@emailForm("email").value"></p>
+                        <p><button class="button" type="submit">Invite User</button></p>
+
+                    </li>
+
+                </ul>
+            </div>
+        </article>
+    }
+}

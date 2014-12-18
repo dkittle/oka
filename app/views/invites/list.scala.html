@@ -1,0 +1,34 @@
+@(users: Iterable[User], invites: Iterable[models.invite.Invite])(implicit lang: Lang, flash:Flash, session: play.api.mvc.Session)
+
+@import org.joda.time.format.DateTimeFormat
+
+@main("All Invites", users) {
+
+    <article class="tasks">
+        <div class="folder">
+            <header><h3>Current invites</h3></header>
+            @if(invites.isEmpty) {
+                <p>No invitations found</p>
+                <p>Invite a new user to add an account to the system.</p>
+            } else {
+                @flash.get("success").map { msg =>
+                    <div class="flash">@msg</div>
+                }
+                <ul class="list">
+                @for(invite <- invites) {
+                    <li><h4>@invite.email</h4>
+                        <strong><a href="@routes.Invites.complete(invite.hash)">@invite.hash</a></strong>
+                        <time datetime="@invite.createdAt">@DateTimeFormat.forPattern("MMM dd yyyy").print(invite.createdAt)</time>
+                    </li>
+                }
+                </ul>
+                <p style="padding: 20px;">Ya, ok, in a real system, these invite codes would be mailed out and a user would click on a link to
+                    sign up.  I don't feel like hacking mail right now as I'm focused on building the model so one needs to build
+                    the signup link manually.</p>
+                <p>Simply click on an invite token to sign that user up to the system.</p>
+            }
+            <a href="@routes.Invites.create" class="new">Invite a new User</a>
+        </div>
+    </article>
+
+}

@@ -1,0 +1,12 @@
+@(user: User)
+
+@import models.User
+
+<!--     for(user <- users) { -->
+        <li data-project="@user.id">
+            <a class="name" href="@routes.Objectives.list(user.username)">@user.name</a>
+        </li>
+<!--     } -->
+
+
+
