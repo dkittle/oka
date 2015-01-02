@@ -20,7 +20,6 @@ libraryDependencies ++= Seq(
   anorm,
   cache,
   ws,
-  "com.typesafe.play.plugins" %% "play-plugins-redis" % "2.3.1",
   "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.1"
 )
 
