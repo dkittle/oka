@@ -9,7 +9,7 @@ scalaVersion := "2.11.1"
 val appDependencies = Seq(
   jdbc,
   anorm,
-  "org.postgresql" % "postgresql" % "9.3-1102.jdbc41"
+  "mysql" % "mysql-connector-java" % "5.1.34"
 )
 
 libraryDependencies ++= Seq(

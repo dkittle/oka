@@ -1,6 +1,6 @@
 
-db.default.url="postgres://oka:oka@localhost:5500/oka_development"
-db.default.driver=org.postgresql.Driver
+db.default.url="mysql://oka:oka@localhost:3306/oka_development"
+db.default.driver=com.mysql.jdbc.Driver
 db.default.user="oka"
 db.default.password="oka"
 

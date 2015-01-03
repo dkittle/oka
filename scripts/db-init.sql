@@ -1,3 +1,3 @@
 create database oka_development;
-create user clearfit with password 'clearfit';
-grant all privileges on database oka_development to clearfit;
+create user oka@'%' identified by 'oka';
+grant all on oka_development.* to oka;

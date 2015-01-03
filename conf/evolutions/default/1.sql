@@ -3,64 +3,52 @@
 # --- !Ups
 
 CREATE TABLE invites (
-  id INT ,
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(255),
   hash VARCHAR(255),
   createdAt TIMESTAMP NOT NULL
-);
+) ENGINE=InnoDB CHARACTER SET=utf8;
 
 CREATE TABLE objectives (
-  id INT ,
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   userId INT,
   parentId INT,
-  name VARCHAR,
-  description VARCHAR,
+  name VARCHAR(255),
+  description VARCHAR(2048),
   createdAt TIMESTAMP,
   updatedAt TIMESTAMP
-);
+) ENGINE=InnoDB CHARACTER SET=utf8;
 
 CREATE TABLE users (
-  id INT ,
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   username VARCHAR(255),
   email VARCHAR(255),
   password VARCHAR(255),
   createdAt TIMESTAMP NOT NULL,
   updatedAt TIMESTAMP
-);
+) ENGINE=InnoDB CHARACTER SET=utf8;
 
-CREATE SEQUENCE invites_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+CREATE TABLE taggroups (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  taggroup VARCHAR(255),
+  createdAt TIMESTAMP NOT NULL
+) ENGINE=InnoDB CHARACTER SET=utf8;
 
-ALTER SEQUENCE invites_id_seq OWNED BY invites.id;
-ALTER TABLE ONLY invites ALTER COLUMN id SET DEFAULT nextval('invites_id_seq'::regclass);
+CREATE TABLE tags (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  taggroupid INT(11),
+  tag VARCHAR(255),
+  createdAt TIMESTAMP NOT NULL
+) ENGINE=InnoDB CHARACTER SET=utf8;
+
+CREATE TABLE objectivetags (
+  objectiveid INT(11) NOT NULL,
+  tagid INT(11) NOT NULL
+) ENGINE=InnoDB CHARACTER SET=utf8;
 
 
-CREATE SEQUENCE objectives_id_seq
-  START WITH 1
-  INCREMENT BY 1
-  NO MINVALUE
-  NO MAXVALUE
-  CACHE 1;
-
-ALTER SEQUENCE objectives_id_seq OWNED BY objectives.id;
-ALTER TABLE ONLY objectives ALTER COLUMN id SET DEFAULT nextval('objectives_id_seq'::regclass);
-
-CREATE SEQUENCE users_id_seq
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
-
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
-
----- Seed data
+-- Seed data
 INSERT INTO users(name, username, email, password, createdAt, updatedAt)
   VALUES ('ClearFit Inc', 'clearfit', '', '', NOW(), NOW());
 
@@ -94,12 +82,27 @@ VALUES(1, NULL, 'Build a community of advocates', '', NOW(), NOW());
 INSERT INTO objectives(userId, parentId, name, description, createdAt,updatedAt)
 VALUES(1, NULL, 'Extend reach', '', NOW(), NOW());
 
+
+INSERT INTO taggroups(taggroup, createdAt)
+VALUES ('Period', NOW());
+
+INSERT INTO taggroups(taggroup, createdAt)
+VALUES ('Department', NOW());
+
+INSERT INTO taggroups(taggroup, createdAt)
+VALUES ('Tag', NOW());
+
+
 # --- !Downs
 DROP TABLE IF EXISTS invites;
-DROP SEQUENCE IF EXISTS invites_id_seq;
 
 DROP TABLE IF EXISTS objectives;
-DROP SEQUENCE IF EXISTS objectives_id_seq;
 
 DROP TABLE IF EXISTS users;
-DROP SEQUENCE IF EXISTS users_id_seq;
+
+DROP TABLE IF EXISTS objectivetags;
+
+DROP TABLE IF EXISTS tags;
+
+DROP TABLE IF EXISTS taggroups;
+
