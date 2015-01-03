@@ -1,11 +1,11 @@
-application.secret="ZY;]Xkf7WxhmeeefEuv2UD0rT[Ef>eOd<Tc5>65Zr_YtlH85FDUSeY>JFNM_mU]@"
+application.secret="secret"
 
 application.langs="en"
 
 
 ehcacheplugin=disabled
 
-company.username=clearfit
+company.username=[your company name here]
 
 
 # Root logger:

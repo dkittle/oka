@@ -1,0 +1,17 @@
+
+db.default.url="postgres://username:password@servername.com/oka_production"
+db.default.driver=org.postgresql.Driver
+db.default.user="username"
+db.default.password="password"
+
+smtp.host=smtpserver.com
+smtp.port=465
+smtp.ssl=no
+smtp.tls=yes
+smtp.user=username
+smtp.password=password
+
+
+db.default.logStatements=false
+logger.com.jolbox=ERROR
+

@@ -17,4 +17,7 @@ dist
 /.settings
 .DS_Store
 projectFilesBackup
+conf/application.conf
+conf/application.dev.conf
+conf/application.prod.conf
 

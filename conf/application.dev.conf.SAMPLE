@@ -1,22 +1,18 @@
-application.secret="ZY;]Xkf7WxhmeeefEuv2UD0rT[Ef>eOd<Tc5>65Zr_YtlH85FDUSeY>JFNM_mU]@"
-
-application.langs="en"
-
 
 db.default.url="postgres://oka:oka@localhost:5500/oka_development"
 db.default.driver=org.postgresql.Driver
-db.default.user="clearfit"
-db.default.password="clearfit"
+db.default.user="oka"
+db.default.password="oka"
 
 db.default.logStatements=true
 logger.com.jolbox=DEBUG
 
-smtp.host=smtp.clearfit.com
+smtp.host=smtp.yoursmtpserver.com
 smtp.port=587
 smtp.ssl=no
 smtp.tls=yes
-smtp.user="info@clearfit.com"
-smtp.password="hiring_150Eg"
+smtp.user="info@companyname.com"
+smtp.password="foo"
 
 
 redis.host=localhost
